@@ -1,6 +1,7 @@
 package app
 
 import (
+	"fmt"
 	"golang-project-template/internal/order/domain"
 	"golang-project-template/internal/shop/app"
 	userApp "golang-project-template/internal/users/app"
@@ -20,15 +21,15 @@ type orderService struct {
 	repo           domain.OrderRepository
 	basketService  BasketService
 	productService app.ProductService
-	userService userApp.UserUsecase
+	userService    userApp.UserUsecase
 }
 
-func NewOrderService(repo domain.OrderRepository, basketservice BasketService, productservice app.ProductService,userService userApp.UserUsecase) OrderService {
+func NewOrderService(repo domain.OrderRepository, basketservice BasketService, productservice app.ProductService, userService userApp.UserUsecase) OrderService {
 	return &orderService{
 		repo:           repo,
 		basketService:  basketservice,
 		productService: productservice,
-		userService: userService,
+		userService:    userService,
 	}
 }
 
@@ -60,7 +61,7 @@ func (o *orderService) CreateOrder(userID, basketID int) error {
 
 	status := domain.OrderInProcess
 
-	number := string(rand.Intn(100000))
+	number := fmt.Sprint(rand.Intn(100000))
 
 	order := domain.Order{
 		Number:     number,
