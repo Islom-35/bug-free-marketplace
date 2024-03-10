@@ -2,7 +2,6 @@ package app
 
 import (
 	"golang-project-template/internal/order/domain"
-	"golang-project-template/internal/users/app"
 )
 
 type BasketService interface {
@@ -25,7 +24,6 @@ func NewBasketService(basketRepo domain.BasketRepository, repoItem domain.Basket
 type basketService struct {
 	basketRepo     domain.BasketRepository
 	basketItemRepo domain.BasketItemRepository
-	userService app.UserUsecase
 }
 
 func (b *basketService) CreateBasket(userID int) (int, error) {
