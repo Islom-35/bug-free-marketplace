@@ -1,7 +1,6 @@
 package adapters
 
 import (
-	"fmt"
 	"golang-project-template/internal/order/domain"
 
 	"github.com/jackc/pgx"
@@ -68,7 +67,7 @@ func (o *orderRepo) GetPaginatedOrders(offset, limit int) ([]domain.Order, error
 
 func (o *orderRepo) UpdateStatusOrder(orderID int, newStatus string) error {
 
-	query := fmt.Sprint("UPDATE orders SET status = $2 WHERE id=$1")
+	query := `UPDATE orders SET status = $2 WHERE id=$1`
 	_, err := o.db.Exec(query, orderID, newStatus)
 
 	return err
